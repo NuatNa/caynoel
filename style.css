@@ -1,0 +1,154 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: rgb(2, 1, 41) !important;
+  overflow-x: hidden;
+  min-height: 100vh;
+  overflow-y: hidden;
+  color: white;
+}
+
+.snowflake {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: linear-gradient(white, white);
+  border-radius: 50%;
+  filter: drop-shadow(0 0 10px white);
+}
+.plan {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  perspective: 1000px;
+  perspective-origin: center -200px;
+  background-color: #010d0142;
+}
+.tree {
+  width: 100px;
+  height: 200px;
+  position: relative;
+  margin: auto;
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: 10s rotate infinite linear;
+}
+@keyframes rotate {
+  from {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+  to {
+    transform: rotateX(0deg) rotateY(360deg);
+  }
+}
+.leaf {
+  --deg: 0deg;
+  width: 100px;
+  height: 200px;
+  background-image: linear-gradient(60deg, lightseagreen, green);
+  transform-style: preserve-3d;
+  position: absolute;
+  transform-origin: left;
+  transform: translateX(50%) rotateY(var(--deg));
+  clip-path: polygon(
+    0% 0%,
+    20% 10%,
+    5% 10%,
+    30% 20%,
+    5% 20%,
+    40% 30%,
+    5% 30%,
+    50% 40%,
+    5% 40%,
+    60% 50%,
+    5% 50%,
+    70% 60%,
+    5% 60%,
+    80% 70%,
+    5% 70%,
+    90% 80%,
+    5% 80%,
+    100% 90%,
+    5% 90%,
+    100% 100%,
+    0% 100%
+  );
+}
+.trunk {
+  width: 10px;
+  height: 100px;
+  position: absolute;
+  background-image: linear-gradient(45deg, brown, chocolate);
+  transform-origin: left;
+  top: 150px;
+  transform: translateX(50%) rotateY(var(--deg));
+}
+.shadow {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  background-color: #0324049a;
+  background-image: radial-gradient(#03240431, #03240400);
+  transform-origin: center;
+  top: 90%;
+  transform: rotateX(90deg);
+  border-radius: 100%;
+  box-shadow: 0px 0px 10px 50px #03240400;
+  filter: blur(15px);
+}
+.star {
+  width: 50px;
+  height: 50px;
+  background-image: linear-gradient(60deg, goldenrod, yellow);
+  background-color: yellow;
+  position: absolute;
+  top: -40px;
+  transform: rotateY(var(--deg));
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+}
+.decoration {
+  --top: -5px;
+  --width: 50px;
+  --height: 50px;
+  width: var(--width);
+  height: var(--height);
+  background-color: transparent;
+  box-shadow: 0px 0px 0px 2px yellow;
+  position: absolute;
+  transform: rotateX(90deg);
+  border-radius: 100%;
+  top: var(--top);
+}
+.decoration::after,
+.decoration::before {
+  display: block;
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  position: absolute;
+  border-radius: 100%;
+  transform: rotateX(-45deg);
+  top: 0px;
+}
+.decoration:nth-child(even) {
+  transform: rotateX(90deg) rotateZ(180deg);
+}
+.decoration::after {
+  top: 80%;
+}
